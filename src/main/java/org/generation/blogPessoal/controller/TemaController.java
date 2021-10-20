@@ -17,12 +17,12 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.generation.blogPessoal.model.Postagem;
 import org.generation.blogPessoal.model.Tema;
 import org.generation.blogPessoal.repository.TemaRepository;
+
 @RestController
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/tema")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class TemaController {
 	
 	@Autowired
@@ -41,7 +41,7 @@ public class TemaController {
 	}
 	
 	@GetMapping("/nome/{nome}")
-	public ResponseEntity<List<Tema>> GetByTitulo(@PathVariable String nome){
+	public ResponseEntity<List<Tema>> GetByName(@PathVariable String nome){
 		return ResponseEntity.ok(repository.findAllByDescricaoContainingIgnoreCase(nome));
 	}
 	
@@ -52,7 +52,7 @@ public class TemaController {
 	
 	@PutMapping
 	public ResponseEntity<Tema> put (@Valid @RequestBody Tema tema){
-		return ResponseEntity.status(HttpStatus.OK).body(repository.save(tema));
+		return ResponseEntity.ok(repository.save(tema));
 	}
 	
 	@DeleteMapping("/{id}")
